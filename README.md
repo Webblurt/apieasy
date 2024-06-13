@@ -44,15 +44,18 @@ Here's a basic example of setting up and running an HTTP server using APIEasy:
     }
     ```
 
-Routing
+### Routing
+
 Routes and handlers are added using the Handle method of the router. Handlers receive a Context object that contains information about the current request and methods to set the response status and message.
 
-Additional Information
-APIEasy supports custom HTTP statuses and provides a convenient interface for request handling.
-Use SetStatus to set the response status and message within a handler.
-Visit the Go documentation for more information on the standard library.
-Contributing and Issue Reporting
+### Additional Information
+1. APIEasy supports custom HTTP statuses and provides a convenient interface for request handling.
+2. Use SetStatus to set the response status and message within a handler.
+3. Visit the Go documentation for more information on the standard library.
+
+### Contributing and Issue Reporting
 If you have suggestions for improvements or find a bug, please open an issue on GitHub or submit a pull request. Contributions are welcome!
 
-License
+### License
+
 APIEasy is licensed under the MIT License. See the LICENSE file for more information.
