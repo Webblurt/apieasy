@@ -3,7 +3,7 @@ package main
 import (
 	"net/http"
 
-	"github.com/webblurt/apieasy"
+	"github.com/Webblurt/apieasy"
 )
 
 func main() {
