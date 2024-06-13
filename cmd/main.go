@@ -1,8 +1,9 @@
 package main
 
 import (
-	"apieasy"
 	"net/http"
+
+	"github.com/webblurt/apieasy"
 )
 
 func main() {
