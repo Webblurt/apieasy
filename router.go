@@ -7,9 +7,10 @@ import (
 type HandlerFunc func(*Context)
 
 type Router struct {
-	routes   map[string]HTTPHandlerFunc
-	handlers map[string]HandlerFunc
-	addr     string
+	routes     map[string]HTTPHandlerFunc
+	handlers   map[string]HandlerFunc
+	middleware []func(http.Handler) http.Handler
+	addr       string
 }
 
 func newRouter(addr ...string) Router {
@@ -21,9 +22,10 @@ func newRouter(addr ...string) Router {
 	}
 
 	return Router{
-		routes:   make(map[string]HTTPHandlerFunc),
-		handlers: make(map[string]HandlerFunc),
-		addr:     address,
+		routes:     make(map[string]HTTPHandlerFunc),
+		handlers:   make(map[string]HandlerFunc),
+		middleware: []func(http.Handler) http.Handler{},
+		addr:       address,
 	}
 }
 
@@ -49,10 +51,21 @@ func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	}
 }
 
+func (r *Router) AddMiddleware(mw func(http.Handler) http.Handler) {
+	r.middleware = append(r.middleware, mw)
+}
+
+func (r *Router) applyMiddleware(h http.Handler) http.Handler {
+	for _, mw := range r.middleware {
+		h = mw(h)
+	}
+	return h
+}
+
 func (r *Router) Run() error {
 	server := &http.Server{
 		Addr:    r.addr,
-		Handler: CorsMiddleware(r),
+		Handler: r.applyMiddleware(r),
 	}
 	return server.ListenAndServe()
 }
