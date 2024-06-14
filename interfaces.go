@@ -13,6 +13,8 @@ type Routes interface {
 	Options(string, HTTPHandlerFunc) Router
 	Head(string, HTTPHandlerFunc) Router
 	Patch(string, HTTPHandlerFunc) Router
+	Run() error
+	Handle(method, pattern string, handler HandlerFunc)
 }
 
 type ResponseWriter interface {
