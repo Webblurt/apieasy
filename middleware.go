@@ -4,6 +4,8 @@ import (
 	"net/http"
 )
 
+type MiddlewareFunc func(http.Handler) http.Handler
+
 func ApiEasyCorsMiddlewareDefault(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, req *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*") // any source
