@@ -149,3 +149,147 @@ var StatusText = map[StatusCode]string{
 	NetworkAuthenticationRequired: "Network Authentication Required",
 	NetworkConnectTimeout:         "Network Connect Timeout",
 }
+
+var (
+	Success = struct {
+		Default                   StatusCode
+		OK                        StatusCode
+		Created                   StatusCode
+		Accepted                  StatusCode
+		NonAuthritativeInformaton StatusCode
+		NoContent                 StatusCode
+		ResetContent              StatusCode
+		PartialContent            StatusCode
+		MultiStatus               StatusCode
+		AlreadyReported           StatusCode
+		IMUsed                    StatusCode
+	}{
+		Default:                   OK,
+		OK:                        OK,
+		Created:                   Created,
+		Accepted:                  Accepted,
+		NonAuthritativeInformaton: NonAuthritativeInformaton,
+		NoContent:                 NoContent,
+		ResetContent:              ResetContent,
+		PartialContent:            PartialContent,
+		MultiStatus:               MultiStatus,
+		AlreadyReported:           AlreadyReported,
+		IMUsed:                    IMUsed,
+	}
+
+	Redirection = struct {
+		Default           StatusCode
+		MultipleChoices   StatusCode
+		MovedPermanently  StatusCode
+		Found             StatusCode
+		SeeOther          StatusCode
+		NotModified       StatusCode
+		UseProxy          StatusCode
+		TemporaryRedirect StatusCode
+		PermanentRedirect StatusCode
+	}{
+		Default:           MovedPermanently,
+		MultipleChoices:   MultipleChoices,
+		MovedPermanently:  MovedPermanently,
+		Found:             Found,
+		SeeOther:          SeeOther,
+		NotModified:       NotModified,
+		UseProxy:          UseProxy,
+		TemporaryRedirect: TemporaryRedirect,
+		PermanentRedirect: PermanentRedirect,
+	}
+
+	ClientError = struct {
+		Default                      StatusCode
+		BadRequest                   StatusCode
+		Unauthorized                 StatusCode
+		PaymentRequired              StatusCode
+		Forbidden                    StatusCode
+		NotFound                     StatusCode
+		MethodNotAllowed             StatusCode
+		NotAcceptable                StatusCode
+		ProxyAuthRequired            StatusCode
+		RequestTimeout               StatusCode
+		Conflict                     StatusCode
+		Gone                         StatusCode
+		LengthRequired               StatusCode
+		PreconditionFailed           StatusCode
+		RequestEntityTooLarge        StatusCode
+		RequestURITooLong            StatusCode
+		UnsupportedMediaType         StatusCode
+		RequestedRangeNotSatisfiable StatusCode
+		ExpectationFailed            StatusCode
+		Teapot                       StatusCode
+		MisdirectedRequest           StatusCode
+		UnprocessableEntity          StatusCode
+		Locked                       StatusCode
+		FailedDependency             StatusCode
+		UpgradeRequired              StatusCode
+		PreconditionRequired         StatusCode
+		TooManyRequests              StatusCode
+		RequestHeaderFieldsTooLarge  StatusCode
+		UnavailableForLegalReasons   StatusCode
+		ClientClosedRequest          StatusCode
+	}{
+		Default:                      BadRequest,
+		BadRequest:                   BadRequest,
+		Unauthorized:                 Unauthorized,
+		PaymentRequired:              PaymentRequired,
+		Forbidden:                    Forbidden,
+		NotFound:                     NotFound,
+		MethodNotAllowed:             MethodNotAllowed,
+		NotAcceptable:                NotAcceptable,
+		ProxyAuthRequired:            ProxyAuthRequired,
+		RequestTimeout:               RequestTimeout,
+		Conflict:                     Conflict,
+		Gone:                         Gone,
+		LengthRequired:               LengthRequired,
+		PreconditionFailed:           PreconditionFailed,
+		RequestEntityTooLarge:        RequestEntityTooLarge,
+		RequestURITooLong:            RequestURITooLong,
+		UnsupportedMediaType:         UnsupportedMediaType,
+		RequestedRangeNotSatisfiable: RequestedRangeNotSatisfiable,
+		ExpectationFailed:            ExpectationFailed,
+		Teapot:                       Teapot,
+		MisdirectedRequest:           MisdirectedRequest,
+		UnprocessableEntity:          UnprocessableEntity,
+		Locked:                       Locked,
+		FailedDependency:             FailedDependency,
+		UpgradeRequired:              UpgradeRequired,
+		PreconditionRequired:         PreconditionRequired,
+		TooManyRequests:              TooManyRequests,
+		RequestHeaderFieldsTooLarge:  RequestHeaderFieldsTooLarge,
+		UnavailableForLegalReasons:   UnavailableForLegalReasons,
+		ClientClosedRequest:          ClientClosedRequest,
+	}
+
+	ServerError = struct {
+		Default                       StatusCode
+		InternalServerError           StatusCode
+		NotImplemented                StatusCode
+		BadGateway                    StatusCode
+		ServiceUnavailable            StatusCode
+		GatewayTimeout                StatusCode
+		HttpVersionNotSupported       StatusCode
+		VariantAlsoNegotiates         StatusCode
+		InsufficientStorage           StatusCode
+		LoopDetected                  StatusCode
+		NotExtended                   StatusCode
+		NetworkAuthenticationRequired StatusCode
+		NetworkConnectTimeout         StatusCode
+	}{
+		Default:                       InternalServerError,
+		InternalServerError:           InternalServerError,
+		NotImplemented:                NotImplemented,
+		BadGateway:                    BadGateway,
+		ServiceUnavailable:            ServiceUnavailable,
+		GatewayTimeout:                GatewayTimeout,
+		HttpVersionNotSupported:       HttpVersionNotSupported,
+		VariantAlsoNegotiates:         VariantAlsoNegotiates,
+		InsufficientStorage:           InsufficientStorage,
+		LoopDetected:                  LoopDetected,
+		NotExtended:                   NotExtended,
+		NetworkAuthenticationRequired: NetworkAuthenticationRequired,
+		NetworkConnectTimeout:         NetworkConnectTimeout,
+	}
+)

@@ -1,14 +1,21 @@
 package apieasy
 
 import (
+	"encoding/json"
 	"net/http"
 )
 
-type Context struct {
-	Writer  http.ResponseWriter
-	Request *http.Request
-	Status  StatusCode
+type Status struct {
+	Code    StatusCode
 	Message string
+}
+
+type Context struct {
+	Writer         http.ResponseWriter
+	Request        *http.Request
+	ResponseStatus Status
+	Status         StatusCode
+	Message        string
 }
 
 func NewContext(w http.ResponseWriter, req *http.Request) *Context {
@@ -18,12 +25,22 @@ func NewContext(w http.ResponseWriter, req *http.Request) *Context {
 	}
 }
 
-func (c *Context) JSON(status int, data interface{}) {
+func (c *Context) JSON(status StatusCode, data interface{}) {
 	c.Writer.Header().Set("Content-Type", "application/json")
-	c.Writer.WriteHeader(status)
+
+	if status == 0 {
+		status = Success.Default
+	}
+
+	c.Writer.WriteHeader(int(status))
+
+	if err := json.NewEncoder(c.Writer).Encode(data); err != nil {
+		http.Error(c.Writer, err.Error(), http.StatusInternalServerError)
+	}
 }
 
-func (c *Context) SetStatus(status StatusCode, message string) {
-	c.Status = status
+func (c *Context) SetStatus(code StatusCode, message string) {
+	c.Status = code
 	c.Message = message
+	c.ResponseStatus = Status{Code: code, Message: message}
 }
