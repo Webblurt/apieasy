@@ -8,7 +8,7 @@ func main() {
 	router := apieasy.NewRouter(":8080")
 
 	router.Handle("GET", "/hello", func(ctx *apieasy.Context) {
-		ctx.SetStatus(apieasy.OK, "Hello, World!")
+		ctx.SetStatus(apieasy.OK, "Hello, World!", nil)
 	})
 
 	router.Handle("POST", "/api/data", func(ctx *apieasy.Context) {
