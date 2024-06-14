@@ -55,17 +55,19 @@ func (r *Router) AddMiddleware(mw func(http.Handler) http.Handler) {
 	r.middleware = append(r.middleware, mw)
 }
 
-func (r *Router) applyMiddleware(h http.Handler) http.Handler {
-	for _, mw := range r.middleware {
-		h = mw(h)
-	}
-	return h
-}
-
 func (r *Router) Run() error {
+	handler := http.Handler(r)
+	for _, mw := range r.middleware {
+		handler = mw(handler)
+	}
+
 	server := &http.Server{
 		Addr:    r.addr,
-		Handler: r.applyMiddleware(r),
+		Handler: handler,
 	}
 	return server.ListenAndServe()
+}
+
+func (r *Router) Use(mw func(http.Handler) http.Handler) {
+	r.middleware = append(r.middleware, mw)
 }
