@@ -39,7 +39,7 @@ func (c *Context) JSON(status StatusCode, data interface{}) {
 	}
 }
 
-func (c *Context) SetStatus(code StatusCode, message string) {
+func (c *Context) SetStatus(code StatusCode, message string, err error) {
 	c.Status = code
 	c.Message = message
 	c.ResponseStatus = Status{Code: code, Message: message}
