@@ -1,6 +1,13 @@
-# APIEasy - Simple Go Web Framework
+# APIEasy
 
-APIEasy is a lightweight web framework for Go that makes it easy to create and handle HTTP requests using a convenient router and context.
+APIEasy is a lightweight web framework for Go that simplifies the creation and handling of HTTP requests. It provides a convenient router and context for building robust web applications with minimal boilerplate code.
+
+### Features
+1. HTTP Request Handling: Easily define routes and handle HTTP methods.
+2. JSON Response: Simplified methods for returning JSON responses with customizable status codes.
+3. Flexible Routing: Supports GET, POST, PUT, DELETE, and other HTTP methods.
+4. Middleware Support: Extendable middleware for additional request processing.
+5. Error Handling: Built-in mechanisms for handling errors and status codes.
 
 ### Installation
 
