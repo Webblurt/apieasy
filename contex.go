@@ -7,7 +7,7 @@ import (
 
 type Status struct {
 	Code    StatusCode
-	Message string
+	Message interface{}
 }
 
 type Context struct {
@@ -15,7 +15,7 @@ type Context struct {
 	Request        *http.Request
 	ResponseStatus Status
 	Status         StatusCode
-	Message        string
+	Message        interface{}
 }
 
 func NewContext(w http.ResponseWriter, req *http.Request) *Context {
@@ -39,7 +39,7 @@ func (c *Context) JSON(status StatusCode, data interface{}) {
 	}
 }
 
-func (c *Context) SetStatus(code StatusCode, message string, err error) {
+func (c *Context) SetStatus(code StatusCode, message interface{}, err error) {
 	c.Status = code
 	c.Message = message
 	c.ResponseStatus = Status{Code: code, Message: message}
