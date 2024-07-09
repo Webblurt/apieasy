@@ -15,7 +15,7 @@ type Router struct {
 	addr        string
 }
 
-func newRouter(addr ...string) Router {
+func newRouter(addr ...string) *Router {
 	var address string
 	if len(addr) > 0 {
 		address = addr[0]
@@ -23,7 +23,7 @@ func newRouter(addr ...string) Router {
 		address = ":8080"
 	}
 
-	return Router{
+	return &Router{
 		routes:      make(map[string]HTTPHandlerFunc),
 		handlers:    make(map[string]HandlerFunc),
 		middlewares: []MiddlewareFunc{},

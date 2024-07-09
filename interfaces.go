@@ -22,6 +22,6 @@ type ResponseWriter interface {
 	Write([]byte) (int, error)
 }
 
-func NewRouter(addr ...string) Router {
+func NewRouter(addr ...string) *Router {
 	return newRouter(addr...)
 }
