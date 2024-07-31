@@ -25,11 +25,17 @@ func NewHTTPClient(config HTTPClientConfig) *http.Client {
 	}
 }
 
-// SendRequest sends an HTTP request with optional headers and body, and returns the response body or an error
-func SendRequest(client *http.Client, method, rawURL string, headers map[string]string, body io.Reader) (string, error) {
+type APIResponse struct {
+	StatusCode int
+	Headers    http.Header
+	Body       string
+}
+
+// SendRequest sends an HTTP request with optional headers and body, and returns the complete response or an error
+func SendRequest(client *http.Client, method, rawURL string, headers map[string]string, body io.Reader) (*APIResponse, error) {
 	req, err := http.NewRequest(method, rawURL, body)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
 	for key, value := range headers {
@@ -38,16 +44,20 @@ func SendRequest(client *http.Client, method, rawURL string, headers map[string]
 
 	resp, err := client.Do(req)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 	defer resp.Body.Close()
 
 	responseBody, err := io.ReadAll(resp.Body)
 	if err != nil {
-		return "", err
+		return nil, err
 	}
 
-	return string(responseBody), nil
+	return &APIResponse{
+		StatusCode: resp.StatusCode,
+		Headers:    resp.Header,
+		Body:       string(responseBody),
+	}, nil
 }
 
 // AddURLParams adds URL parameters to the given URL
